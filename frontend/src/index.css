@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Comic+Neue:wght@400;700&display=swap');
+
+:root {
+  --notebook: #F8F5E6;
+  --grid: #DAD7C9;
+  --ink: #1D3557;
+  --btn: #3A86FF;
+  --pink: #FF8FAB;
+  --grey: #6C757D;
+  --yes: #2DC653;
+  --no: #E63946;
+  --warn: #FB8500;
+  --spiral: #A8A8A8;
+  --margin: #FFB3C1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Patrick Hand', cursive;
+  background-color: #e8e4d0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      var(--grid) 27px,
+      var(--grid) 28px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 27px,
+      var(--grid) 27px,
+      var(--grid) 28px
+    );
+  min-height: 100vh;
+  color: var(--ink);
+}
+
+.notebook-page {
+  background-color: var(--notebook);
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 27px,
+      var(--grid) 27px,
+      var(--grid) 28px
+    );
+  border-left: 3px solid var(--margin);
+  position: relative;
+}
+
+.notebook-page::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 45px,
+    var(--margin) 45px,
+    var(--margin) 48px,
+    transparent 48px
+  );
+  pointer-events: none;
+}
+
+.spiral-binding {
+  position: absolute;
+  left: -24px;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 8px 0;
+  pointer-events: none;
+}
+
+.spiral-ring {
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--spiral);
+  border-radius: 50%;
+  background: #d0cdc0;
+  flex-shrink: 0;
+}
+
+.doodle-text {
+  font-family: 'Patrick Hand', cursive;
+  color: var(--ink);
+  opacity: 0.12;
+  font-size: 1.2rem;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  transform: rotate(-15deg);
+}
+
+.btn-primary {
+  @apply bg-btn text-white font-bold py-3 px-6 rounded-lg shadow-md
+    hover:bg-blue-600 active:scale-95 transition-all duration-150
+    font-hand text-lg border-2 border-blue-700;
+}
+
+.btn-secondary {
+  @apply bg-pink text-white font-bold py-3 px-6 rounded-lg shadow-md
+    hover:opacity-90 active:scale-95 transition-all duration-150
+    font-hand text-lg border-2 border-pink;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-ink font-bold py-2 px-4 rounded-lg
+    hover:bg-grid active:scale-95 transition-all duration-150
+    font-hand text-base border-2 border-grid;
+}
+
+.card {
+  @apply bg-notebook rounded-xl shadow-lg border border-grid p-4;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    var(--grid) 27px,
+    var(--grid) 28px
+  );
+}
+
+.input-field {
+  @apply bg-notebook border-b-2 border-ink outline-none w-full
+    font-hand text-lg text-ink px-2 py-1 placeholder-grey;
+  background: transparent;
+}
+
+input:focus {
+  border-color: var(--btn);
+}
+
+.player-tag {
+  @apply flex items-center gap-2 px-3 py-2 rounded-lg font-hand text-sm;
+}
+
+.answer-yes {
+  @apply bg-yes text-white font-bold py-2 px-5 rounded-lg border-2 border-green-600
+    hover:bg-green-600 active:scale-95 transition-all font-hand text-lg;
+}
+
+.answer-no {
+  @apply bg-no text-white font-bold py-2 px-5 rounded-lg border-2 border-red-700
+    hover:bg-red-700 active:scale-95 transition-all font-hand text-lg;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--grid);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--grey);
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  .notebook-page::before {
+    display: none;
+  }
+  .spiral-binding {
+    display: none;
+  }
+}
